@@ -1,13 +1,41 @@
 package mahjong;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Hand {
-    private List<Tile> tiles;
+import static mahjong.Tile.SORT_BY_ORDER;
 
-    public void drawTile(Tile t) {tiles.add(t); }
-    public void discardTile(Tile t) { tiles.remove(t); }
-    public boolean isFull() {
-        int MAX_HAND_SIZE = 13;
-        return tiles.size() == MAX_HAND_SIZE; }
+public class Hand {
+    private final List<Tile> tiles;
+    private int han;
+    private int fu;
+    public static final int MAX_HAND_SIZE = 13;
+
+    public Hand() {
+        this.tiles = new ArrayList<>();
+        this.han = 0;
+        this.fu = 0;
+    }
+
+    public boolean isFull() { return tiles.size() == MAX_HAND_SIZE; }
+
+    public void drawTile(Tile t) {
+        if (!isFull()) {
+            tiles.add(t);
+        }
+    }
+
+    public void discardTile(Tile t) {
+        tiles.remove(t);
+    }
+
+    public void sortHand(){
+        this.tiles.sort(SORT_BY_ORDER);
+    }
+
+    @Override
+    public String toString(){
+        return tiles.toString();
+    }
 }

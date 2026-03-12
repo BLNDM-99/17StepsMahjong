@@ -28,11 +28,11 @@ public class Tile {
     private boolean isDora;
     private final boolean isRed;
 
-    public Tile(Suit suit, int rank, boolean isRed){
+    public Tile(Suit suit, int rank){
         this.suit = suit;
         this.rank = rank;
         this.sortingValue = suit.getSortingValue() + rank; //used to sort tiles
-        this.isRed = isRed;
+        this.isRed = false;
         this.isDora = false;
     }
 
