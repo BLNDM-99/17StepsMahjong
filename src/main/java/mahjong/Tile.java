@@ -1,5 +1,7 @@
 package mahjong;
 
+import java.util.*;
+
 public class Tile {
 
     public enum Suit{
@@ -24,7 +26,6 @@ public class Tile {
     private final int rank;
     private final int sortingValue;
     private boolean isDora;
-    private boolean isUraDora;
     private final boolean isRed;
 
     public Tile(Suit suit, int rank, boolean isRed){
@@ -33,20 +34,17 @@ public class Tile {
         this.sortingValue = suit.getSortingValue() + rank; //used to sort tiles
         this.isRed = isRed;
         this.isDora = false;
-        this.isUraDora = false;
     }
 
     //Getters
     public Suit getSuit() { return suit; }
-    public int getRank() {return rank;}
+    public int getRank() { return rank;}
     public int getSortingValue() { return sortingValue; }
     public boolean isDora() { return isDora; }
-    public boolean isUraDora() { return isUraDora; }
     public boolean isRed() { return isRed; }
 
     //Setters
     public void setDora(boolean dora) { isDora = dora; }
-    public void setUraDora(boolean uraDora) { isUraDora = uraDora; }
 
     @Override
     public String toString() {
@@ -71,4 +69,8 @@ public class Tile {
         }
         return "UNKNOWN TILE";
     }
+
+    //Used to sort by order (characters first, then bamboo, then dot, then wind, then dragon)
+    public static final Comparator<Tile> SORT_BY_ORDER =
+            Comparator.comparingInt(Tile::getSortingValue);
 }
