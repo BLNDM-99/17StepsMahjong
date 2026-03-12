@@ -1,6 +1,9 @@
 package app;
 
 import mahjong.*;
+
+import java.util.ArrayList;
+import java.util.List;
 //https://www.reddit.com/r/kaiji/comments/fosyx7/one_poker_and_17_steps_rules/
 
 public class Main {
@@ -17,17 +20,40 @@ public class Main {
         System.out.println(t4);
         System.out.println(t5);
 
-        Hand hand = new Hand();
+        Hand hando = new Hand();
 
-        hand.drawTile(t1);
-        hand.drawTile(t2);
-        hand.drawTile(t3);
-        hand.drawTile(t4);
-        hand.drawTile(t5);
+        hando.drawTile(t1);
+        hando.drawTile(t2);
+        hando.drawTile(t3);
+        hando.drawTile(t4);
+        hando.drawTile(t5);
 
-        System.out.println(hand);
+        System.out.println(hando);
 
-        hand.sortHand();
-        System.out.println(hand);
+        hando.sortHand();
+        System.out.println(hando);
+
+        List<Tile> hand = new ArrayList<>();
+
+        hand.add(new Tile(Tile.Suit.CHARACTER,1));
+        hand.add(new Tile(Tile.Suit.CHARACTER,1)); // pair
+
+        hand.add(new Tile(Tile.Suit.CHARACTER,2));
+        hand.add(new Tile(Tile.Suit.CHARACTER,3));
+        hand.add(new Tile(Tile.Suit.CHARACTER,4));
+
+        hand.add(new Tile(Tile.Suit.BAMBOO,5));
+        hand.add(new Tile(Tile.Suit.BAMBOO,6));
+        hand.add(new Tile(Tile.Suit.BAMBOO,7));
+
+        hand.add(new Tile(Tile.Suit.DOT,3));
+        hand.add(new Tile(Tile.Suit.DOT,3));
+        hand.add(new Tile(Tile.Suit.DOT,3));
+
+        hand.add(new Tile(Tile.Suit.DOT,6));
+        hand.add(new Tile(Tile.Suit.DOT,7));
+        hand.add(new Tile(Tile.Suit.DOT,8));
+
+        System.out.println(HandValidator.isWinningHand(hand));
     }
 }

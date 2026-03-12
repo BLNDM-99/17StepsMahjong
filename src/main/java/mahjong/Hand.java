@@ -18,6 +18,10 @@ public class Hand {
         this.fu = 0;
     }
 
+    public List<Tile> getTiles() {
+        return tiles;
+    }
+
     public boolean isFull() { return tiles.size() == MAX_HAND_SIZE; }
 
     public void drawTile(Tile t) {

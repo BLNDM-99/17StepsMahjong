@@ -78,4 +78,17 @@ public class Tile {
     //Used to sort by order (characters first, then bamboo, then dot, then wind, then dragon)
     public static final Comparator<Tile> SORT_BY_ORDER =
             Comparator.comparingInt(Tile::getSortingValue);
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Tile)) return false;
+        Tile other = (Tile) obj;
+        return this.suit == other.suit && this.rank == other.rank;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(suit, rank);
+    }
 }
