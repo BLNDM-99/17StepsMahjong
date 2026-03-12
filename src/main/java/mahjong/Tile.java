@@ -26,6 +26,7 @@ public class Tile {
     private final int rank;
     private final int sortingValue;
     private boolean isDora;
+    private boolean isUraDora;
     private final boolean isRed;
 
     public Tile(Suit suit, int rank){
@@ -34,6 +35,7 @@ public class Tile {
         this.sortingValue = suit.getSortingValue() + rank; //used to sort tiles
         this.isRed = false;
         this.isDora = false;
+        this.isUraDora = false;
     }
 
     //Getters
@@ -41,10 +43,13 @@ public class Tile {
     public int getRank() { return rank;}
     public int getSortingValue() { return sortingValue; }
     public boolean isDora() { return isDora; }
+    public boolean isUraDora() { return isUraDora; }
     public boolean isRed() { return isRed; }
+
 
     //Setters
     public void setDora(boolean dora) { isDora = dora; }
+    public void setUraDora(boolean uraDora) { isUraDora = uraDora; }
 
     @Override
     public String toString() {

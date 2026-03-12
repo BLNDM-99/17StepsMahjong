@@ -1,6 +1,7 @@
 package app;
 
 import mahjong.*;
+//https://www.reddit.com/r/kaiji/comments/fosyx7/one_poker_and_17_steps_rules/
 
 public class Main {
     public static void main(String[] args){
