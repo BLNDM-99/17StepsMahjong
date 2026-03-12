@@ -1,7 +1,9 @@
 package mahjong;
 
+import java.util.List;
+
 public class Hand {
-    private List<Tiles> tiles;
+    private List<Tile> tiles;
 
     public void drawTile(Tile t) {tiles.add(t); }
     public void discardTile(Tile t) { tiles.remove(t); }
