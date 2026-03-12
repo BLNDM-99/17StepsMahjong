@@ -47,4 +47,52 @@ public class Tile {
     //Setters
     public void setDora(boolean dora) { isDora = dora; }
     public void setUraDora(boolean uraDora) { isUraDora = uraDora; }
+
+    @Override
+    public String toString(){
+        //If tile is character or bamboo or dot
+        if (this.sortingValue <= 27){
+            return String.format("%d OF %s", this.rank, this.suit.toString());
+        }
+        //If tile is wind
+        else if (this.sortingValue <= 31){
+            String s = "WIND";
+            switch(this.sortingValue){
+                case 28:
+                    s = "EAST " + s;
+                    break;
+                case 29:
+                    s = "SOUTH " + s;
+                    break;
+                case 30:
+                    s = "WEST " + s;
+                    break;
+                case 31:
+                    s = "NORTH " + s;
+                    break;
+                default:
+                    System.out.println("Something went wrong since you shouldn't be able to get to this point");
+            }
+            return s;
+        }
+        //If tile is dragon
+        else if (this.sortingValue <= 34){
+            String s = "DRAGON";
+            switch(this.sortingValue){
+                case 32:
+                    s = "WHITE " + s;
+                    break;
+                case 33:
+                    s = "GREEN " + s;
+                    break;
+                case 34:
+                    s = "RED " + s;
+                    break;
+                default:
+                    System.out.println("Something went wrong since you shouldn't be able to get to this point");
+            }
+            return s;
+        }
+        return "";
+    }
 }
