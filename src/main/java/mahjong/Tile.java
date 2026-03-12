@@ -14,7 +14,7 @@ public class Tile {
         private final int sortingValue; //used to determine how tiles should be sorted
 
         Suit(int sortingValue){
-            this.sortingValue = sortingValue;
+            this.sortingValue = sortingValue - 1;
         }
 
         public int getSortingValue(){

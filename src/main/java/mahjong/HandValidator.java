@@ -16,6 +16,7 @@ public class HandValidator {
                 counts[i] -= 2;
 
                 if (canFormSets(counts)) {
+                    System.out.println("Valid hand!");
                     return true;
                 }
 
@@ -23,30 +24,8 @@ public class HandValidator {
             }
         }
 
+        System.out.println("Not valid");
         return false;
-    }
-
-    private static int tileToIndex(Tile t) {
-
-        switch (t.getSuit()) {
-
-            case CHARACTER:
-                return t.getRank() - 1;
-
-            case BAMBOO:
-                return 9 + (t.getRank() - 1);
-
-            case DOT:
-                return 18 + (t.getRank() - 1);
-
-            case WIND:
-                return 27 + (t.getRank() - 1);
-
-            case DRAGON:
-                return 31 + (t.getRank() - 1);
-        }
-
-        throw new IllegalArgumentException("Invalid tile");
     }
 
     private static int[] buildCounts(List<Tile> tiles) {
@@ -54,7 +33,7 @@ public class HandValidator {
         int[] counts = new int[34];
 
         for (Tile t : tiles) {
-            counts[tileToIndex(t)]++;
+            counts[t.getSortingValue()]++;
         }
 
         return counts;
@@ -73,7 +52,7 @@ public class HandValidator {
             return true; // all tiles used
         }
 
-        // ----- try triplets -----
+        // try triplets
         if (counts[i] >= 3) {
 
             counts[i] -= 3;
@@ -85,8 +64,8 @@ public class HandValidator {
             counts[i] += 3;
         }
 
-        // ----- try sequences -----
-        if (i <= 24 && (i % 9) <= 6) {
+        // try sequences
+        if (i <= 24 && (i % 9) <= 6) { //only check if it's between 1-7 inclusive, because you can't check 8-9-10 or 9-10-11
 
             if (counts[i+1] > 0 && counts[i+2] > 0) {
 

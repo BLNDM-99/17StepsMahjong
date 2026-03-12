@@ -38,9 +38,9 @@ public class Main {
         hand.add(new Tile(Tile.Suit.CHARACTER,1));
         hand.add(new Tile(Tile.Suit.CHARACTER,1)); // pair
 
+        hand.add(new Tile(Tile.Suit.CHARACTER,1));
         hand.add(new Tile(Tile.Suit.CHARACTER,2));
         hand.add(new Tile(Tile.Suit.CHARACTER,3));
-        hand.add(new Tile(Tile.Suit.CHARACTER,4));
 
         hand.add(new Tile(Tile.Suit.BAMBOO,5));
         hand.add(new Tile(Tile.Suit.BAMBOO,6));
@@ -54,6 +54,7 @@ public class Main {
         hand.add(new Tile(Tile.Suit.DOT,7));
         hand.add(new Tile(Tile.Suit.DOT,8));
 
-        System.out.println(HandValidator.isWinningHand(hand));
+        //System.out.println(HandValidator.isWinningHand(hand));
+        HandValidator.isWinningHand(hand);
     }
 }
