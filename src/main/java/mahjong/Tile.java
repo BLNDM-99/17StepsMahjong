@@ -49,50 +49,26 @@ public class Tile {
     public void setUraDora(boolean uraDora) { isUraDora = uraDora; }
 
     @Override
-    public String toString(){
-        //If tile is character or bamboo or dot
-        if (this.sortingValue <= 27){
-            return String.format("%d OF %s", this.rank, this.suit.toString());
+    public String toString() {
+        switch (suit) {
+            case CHARACTER: case BAMBOO: case DOT:
+                return rank + " OF " + suit;
+            case WIND:
+                switch(rank) {
+                    case 1: return "EAST WIND";
+                    case 2: return "SOUTH WIND";
+                    case 3: return "WEST WIND";
+                    case 4: return "NORTH WIND";
+                }
+                break;
+            case DRAGON:
+                switch(rank) {
+                    case 1: return "WHITE DRAGON";
+                    case 2: return "GREEN DRAGON";
+                    case 3: return "RED DRAGON";
+                }
+                break;
         }
-        //If tile is wind
-        else if (this.sortingValue <= 31){
-            String s = "WIND";
-            switch(this.sortingValue){
-                case 28:
-                    s = "EAST " + s;
-                    break;
-                case 29:
-                    s = "SOUTH " + s;
-                    break;
-                case 30:
-                    s = "WEST " + s;
-                    break;
-                case 31:
-                    s = "NORTH " + s;
-                    break;
-                default:
-                    System.out.println("Something went wrong since you shouldn't be able to get to this point");
-            }
-            return s;
-        }
-        //If tile is dragon
-        else if (this.sortingValue <= 34){
-            String s = "DRAGON";
-            switch(this.sortingValue){
-                case 32:
-                    s = "WHITE " + s;
-                    break;
-                case 33:
-                    s = "GREEN " + s;
-                    break;
-                case 34:
-                    s = "RED " + s;
-                    break;
-                default:
-                    System.out.println("Something went wrong since you shouldn't be able to get to this point");
-            }
-            return s;
-        }
-        return "";
+        return "UNKNOWN TILE";
     }
 }
