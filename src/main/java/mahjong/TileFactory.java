@@ -9,11 +9,13 @@ public class TileFactory {
 
         for (int i = 1; i <= 9; i++){
             for (int j = 0; j < 4; j++) {
+                //generates red tiles
                 if (i == 5 && j == 0) {
                     tiles.add(new Tile(Tile.Suit.CHARACTER, i, true));
                     tiles.add(new Tile(Tile.Suit.BAMBOO, i, true));
                     tiles.add(new Tile(Tile.Suit.DOT, i, true));
                 }
+                //generates non-red tiles
                 else {
                     tiles.add(new Tile(Tile.Suit.CHARACTER, i));
                     tiles.add(new Tile(Tile.Suit.BAMBOO, i));
