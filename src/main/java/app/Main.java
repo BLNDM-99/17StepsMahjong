@@ -4,6 +4,8 @@ import mahjong.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static mahjong.Tile.SORT_BY_ORDER;
 //https://www.reddit.com/r/kaiji/comments/fosyx7/one_poker_and_17_steps_rules/
 
 public class Main {
@@ -56,5 +58,9 @@ public class Main {
 
         //System.out.println(HandValidator.isWinningHand(hand));
         HandValidator.isWinningHand(hand);
+
+        List<Tile> fullSet = TileFactory.createFullSet();
+        fullSet.sort(SORT_BY_ORDER);
+        System.out.println(fullSet);
     }
 }

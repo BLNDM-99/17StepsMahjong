@@ -38,6 +38,15 @@ public class Tile {
         this.isUraDora = false;
     }
 
+    public Tile(Suit suit, int rank, boolean isRed){
+        this.suit = suit;
+        this.rank = rank;
+        this.sortingValue = suit.getSortingValue() + rank; //used to sort tiles
+        this.isRed = isRed;
+        this.isDora = false;
+        this.isUraDora = false;
+    }
+
     //Getters
     public Suit getSuit() { return suit; }
     public int getRank() { return rank;}
@@ -55,7 +64,7 @@ public class Tile {
     public String toString() {
         switch (suit) {
             case CHARACTER: case BAMBOO: case DOT:
-                return rank + " OF " + suit;
+                return isRed ? "RED " + rank + " OF " + suit : rank + " OF " + suit;
             case WIND:
                 switch(rank) {
                     case 1: return "EAST WIND";
