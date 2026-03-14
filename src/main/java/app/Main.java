@@ -76,5 +76,17 @@ public class Main {
 
         Wall w3 = new Wall(fullSet.subList(34, 34 + 34));
         System.out.println(w3);
+
+        Player p1 = new Player();
+        p1.setWall(w2);
+        System.out.println("PLAYER 1 WALL: " + w2);
+
+        Player p2 = new Player();
+        p2.setWall(w3);
+        System.out.println("PLAYER 2 WALL: " + w3);
+        System.out.println(w3.getTiles().get(1));
+
+        p1.selectTilesFromWallConsoleVersion();
+        System.out.println(p1.getHand());
     }
 }

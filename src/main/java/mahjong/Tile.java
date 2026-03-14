@@ -38,6 +38,7 @@ public class Tile {
         this.isUraDora = false;
     }
 
+    //secondary constructor used to easily make a tile red
     public Tile(Suit suit, int rank, boolean isRed){
         this.suit = suit;
         this.rank = rank;
