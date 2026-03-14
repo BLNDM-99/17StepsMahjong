@@ -11,10 +11,11 @@ public class YakuChecker {
     31 - 33 dragon
      */
 
-    Hand hand;
-    int[] counts;
-    WindEnum playerWind;
-    WindEnum prevailingWind;
+    private Hand hand;
+    private int[] counts;
+    private WindEnum playerWind;
+    private WindEnum prevailingWind;
+    private Tile winningTile;
 
     public YakuChecker(Player player){
         this.hand = player.getHand();

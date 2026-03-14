@@ -85,4 +85,19 @@ public class HandValidator {
 
         return false;
     }
+
+    //Checks if 1 tile away from winning. Not sure if I'll actually use this for anything yet
+    public static boolean isTenpai(List<Tile> tiles){
+        int counts[] = buildCounts(tiles);
+
+        for (int i = 0; i < 34; i++){
+            counts[i]++;
+            if (HandValidator.canFormSets(counts)){
+                counts[i]--;
+                return true;
+            }
+            counts[i]--;
+        }
+        return false;
+    }
 }

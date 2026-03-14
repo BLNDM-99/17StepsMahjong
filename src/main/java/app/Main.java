@@ -66,6 +66,9 @@ public class Main {
         YakuChecker checker = new YakuChecker(hand);
         System.out.println(checker.isTanyao());
 
+        hand.getTiles().remove(13);
+        HandValidator.isTenpai(hand.getTiles());
+
         List<Tile> fullSet = TileFactory.createFullSet();
         fullSet.sort(SORT_BY_ORDER);
         System.out.println(fullSet);
