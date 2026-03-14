@@ -11,6 +11,7 @@ import static mahjong.Tile.SORT_BY_ORDER;
 
 public class Main {
     public static void main(String[] args){
+        /*
         Tile t1 = new Tile(Tile.Suit.CHARACTER, 1);
         Tile t2 = new Tile(Tile.Suit.WIND, 3);
         Tile t3 = new Tile(Tile.Suit.DRAGON, 3);
@@ -22,7 +23,9 @@ public class Main {
         System.out.println(t3);
         System.out.println(t4);
         System.out.println(t5);
+        */
 
+        /*
         Hand hando = new Hand();
 
         hando.drawTile(t1);
@@ -35,30 +38,33 @@ public class Main {
 
         hando.sortHand();
         System.out.println(hando);
+         */
 
-        List<Tile> hand = new ArrayList<>();
+        Hand hand = new Hand();
 
-        hand.add(new Tile(Tile.Suit.CHARACTER,1));
-        hand.add(new Tile(Tile.Suit.CHARACTER,1)); // pair
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2)); // pair
 
-        hand.add(new Tile(Tile.Suit.CHARACTER,1));
-        hand.add(new Tile(Tile.Suit.CHARACTER,2));
-        hand.add(new Tile(Tile.Suit.CHARACTER,3));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,3));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,4));
 
-        hand.add(new Tile(Tile.Suit.BAMBOO,5));
-        hand.add(new Tile(Tile.Suit.BAMBOO,6));
-        hand.add(new Tile(Tile.Suit.BAMBOO,7));
+        hand.getTiles().add(new Tile(Tile.Suit.BAMBOO,5));
+        hand.getTiles().add(new Tile(Tile.Suit.BAMBOO,6));
+        hand.getTiles().add(new Tile(Tile.Suit.BAMBOO,7));
 
-        hand.add(new Tile(Tile.Suit.DOT,3));
-        hand.add(new Tile(Tile.Suit.DOT,3));
-        hand.add(new Tile(Tile.Suit.DOT,3));
+        hand.getTiles().add(new Tile(Tile.Suit.DOT,3));
+        hand.getTiles().add(new Tile(Tile.Suit.DOT,3));
+        hand.getTiles().add(new Tile(Tile.Suit.DOT,3));
 
-        hand.add(new Tile(Tile.Suit.DOT,6));
-        hand.add(new Tile(Tile.Suit.DOT,7));
-        hand.add(new Tile(Tile.Suit.DOT,8));
+        hand.getTiles().add(new Tile(Tile.Suit.DOT,6));
+        hand.getTiles().add(new Tile(Tile.Suit.DOT,7));
+        hand.getTiles().add(new Tile(Tile.Suit.DOT,8));
 
         //System.out.println(HandValidator.isWinningHand(hand));
-        HandValidator.isWinningHand(hand);
+        HandValidator.isWinningHand(hand.getTiles());
+        YakuChecker checker = new YakuChecker(hand);
+        System.out.println(checker.isTanyao());
 
         List<Tile> fullSet = TileFactory.createFullSet();
         fullSet.sort(SORT_BY_ORDER);
@@ -88,5 +94,9 @@ public class Main {
 
         p1.selectTilesFromWallConsoleVersion();
         System.out.println(p1.getHand());
+
+        YakuChecker checkerForPlayer = new YakuChecker(p1);
+        System.out.println(checkerForPlayer.isTanyao());
+        System.out.println(checkerForPlayer.isYakuhai());
     }
 }

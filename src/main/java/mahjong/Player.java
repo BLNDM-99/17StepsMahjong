@@ -3,15 +3,18 @@ package mahjong;
 import java.util.*;
 
 public class Player {
+
     private final Hand hand;
     private Wall wall;
     private List<Tile> discardedTiles; //probably will use for furiten
     private int points;
+    private WindEnum seat; //the player's wind
 
     public Player(){
         this.hand = new Hand();
         this.wall = new Wall();
         this.points = 0;
+        this.seat = WindEnum.EAST; //placeholder
     }
 
     //Getters
@@ -19,11 +22,13 @@ public class Player {
     public Wall getWall() { return wall; }
     public List<Tile> getDiscardedTiles() { return discardedTiles; }
     public int getPoints() { return points; }
+    public WindEnum getSeat() { return seat; }
 
     //Setters
     public void setWall(Wall wall) { this.wall = wall; }
     public void setDiscardedTiles(List<Tile> discardedTiles) { this.discardedTiles = discardedTiles; }
     public void setPoints(int points) { this.points = points; }
+    public void setSeat (WindEnum seat) { this.seat = seat; }
 
     public void selectTilesFromWallConsoleVersion() {
         Scanner scanner = new Scanner(System.in);

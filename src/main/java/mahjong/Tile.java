@@ -65,7 +65,9 @@ public class Tile {
     public String toString() {
         switch (suit) {
             case CHARACTER: case BAMBOO: case DOT:
-                return isRed ? "RED " + rank + " OF " + suit : rank + " OF " + suit;
+                return isRed ? "RED " + rank + " OF " + suit : rank + " OF " + suit
+                        //+ " " + this.getSortingValue()
+            ;
             case WIND:
                 switch(rank) {
                     case 1: return "EAST WIND";
