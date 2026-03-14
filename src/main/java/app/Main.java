@@ -3,6 +3,7 @@ package app;
 import mahjong.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static mahjong.Tile.SORT_BY_ORDER;
@@ -62,5 +63,18 @@ public class Main {
         List<Tile> fullSet = TileFactory.createFullSet();
         fullSet.sort(SORT_BY_ORDER);
         System.out.println(fullSet);
+
+        Collections.shuffle(fullSet);
+        System.out.println(fullSet);
+
+        Wall w = new Wall();
+        w.getTiles().add(new Tile(Tile.Suit.DRAGON, 3));
+        System.out.println(w);
+
+        Wall w2 = new Wall(fullSet.subList(0, 34));
+        System.out.println(w2);
+
+        Wall w3 = new Wall(fullSet.subList(34, 34 + 34));
+        System.out.println(w3);
     }
 }
