@@ -1,14 +1,16 @@
 package mahjong;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class YakuChecker {
     /*
     0 - 8 characters
     9 - 17 bamboo
     18 - 26 dot
-    27 - 30 wind
-    31 - 33 dragon
+    27 - 30 wind (east, south, west, north)
+    31 - 33 dragon (white, green, red)
      */
 
     private Hand hand;
@@ -72,4 +74,18 @@ public class YakuChecker {
 
     }
     */
+
+    //----------------------------------------------------YAKUMAN-------------------------------------------------------
+
+    //English name: all green
+    public boolean isRyuuiisou() {
+        Set<Integer> legalIndexes = new HashSet<>();
+        legalIndexes.add(10); legalIndexes.add(11); legalIndexes.add(12);
+        legalIndexes.add(14); legalIndexes.add(16); legalIndexes.add(32);
+
+        for (int i = 0; i < counts.length; i++) {
+            if (counts[i] > 0 && !legalIndexes.contains(i)) return false;
+        }
+        return true;
+    }
 }

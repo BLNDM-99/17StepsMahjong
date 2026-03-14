@@ -69,6 +69,26 @@ public class Main {
         hand.getTiles().remove(13);
         HandValidator.isTenpai(hand.getTiles());
 
+        Hand greenHand = new Hand();
+
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 2));
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 2));
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 2));
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 3));
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 3));
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 3));
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 4));
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 4));
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 4));
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 6));
+        greenHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 6));
+        greenHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 2));
+        greenHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 2));
+        greenHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 2));
+
+        checker = new YakuChecker(greenHand);
+        System.out.println("All green: "+ checker.isRyuuiisou());
+
         List<Tile> fullSet = TileFactory.createFullSet();
         fullSet.sort(SORT_BY_ORDER);
         System.out.println(fullSet);
