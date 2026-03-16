@@ -8,6 +8,7 @@ import static mahjong.Tile.SORT_BY_ORDER;
 
 public class Hand {
     private final List<Tile> tiles;
+    private int winningTileIndex;
     private int han;
     private int fu;
     public static final int MAX_HAND_SIZE = 13;
@@ -20,6 +21,14 @@ public class Hand {
 
     public List<Tile> getTiles() {
         return tiles;
+    }
+
+    public int getWinningTileIndex() {
+        return winningTileIndex;
+    }
+
+    public void setWinningTileIndex(int winningTileIndex) {
+        this.winningTileIndex = winningTileIndex;
     }
 
     public boolean isFull() { return tiles.size() == MAX_HAND_SIZE; }

@@ -75,6 +75,12 @@ public class YakuChecker {
     }
     */
 
+    //English name: seven pairs
+    public boolean isChiitoitsu() {
+        HandValidator hv = new HandValidator();
+        return HandValidator.canFormSevenPairs(counts);
+    }
+
     //----------------------------------------------------YAKUMAN-------------------------------------------------------
 
     //English name: all green
@@ -89,8 +95,39 @@ public class YakuChecker {
         return true;
     }
 
-    public boolean isSevenPairs() {
-        HandValidator hv = new HandValidator();
-        return HandValidator.canFormSevenPairs(counts);
+    //English name: thirteen orphans single wait
+    public boolean isKokushiMusou() {
+        int[] tempCounts = counts.clone();
+        tempCounts[hand.getWinningTileIndex()]--;
+
+        int[] legalIndexes = {0, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33};
+
+        for (int li : legalIndexes){
+            if (tempCounts[li] == 2){
+                System.out.println("Is single wait thirteen orphans");
+                return true;
+            }
+        }
+        System.out.println("Is not single wait thirteen orphans");
+        return false;
+    }
+
+    //English name: thirteen orphans 13-sided wait
+    public boolean isKokushiJuusanmen() {
+        //tbh this whole function might be necessary because if something is thirteen orphans but not kokushi musou
+        //then by process of elimination it's kokushi juusanmen
+        int[] tempCounts = counts.clone();
+        tempCounts[hand.getWinningTileIndex()]--;
+
+        int[] legalIndexes = {0, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33};
+
+        for (int li : legalIndexes){
+            if (tempCounts[li] != 1){
+                System.out.println("Is not 13-sided thirteen orphans");
+                return false;
+            }
+        }
+        System.out.println("Is 13-sided thirteen orphans");
+        return true;
     }
 }

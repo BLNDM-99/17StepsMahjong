@@ -24,6 +24,11 @@ public class HandValidator {
             }
         }
         if (canFormSevenPairs(counts)){
+            System.out.println("Valid seven pairs!");
+            return true;
+        }
+        if (canFormThirteenOrphans(counts)){
+            System.out.println("Valid thirteen orphans!");
             return true;
         }
 
@@ -98,6 +103,25 @@ public class HandValidator {
             }
         }
         return pairCount == 7;
+    }
+
+    protected static boolean canFormThirteenOrphans(int[] counts){
+        int[] legalIndexes = {0, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33};
+        boolean foundPair = false;
+
+        for (int li : legalIndexes){
+            if (counts[li] < 1 || counts[li] >= 3){ //false if the tile isn't there or if it's a triplet or quad
+                return false;
+            }
+            if (counts[li] == 2 && !foundPair){ //in thirteen orphans we can only have one pair
+                foundPair = true;
+                continue;
+            }
+            if (counts[li] == 2 && foundPair){ //if we find two of the same tile again after we already found our pair, the hand is not valid
+                return false;
+            }
+        }
+        return true; //if we made it this far then this is thirteen orphans
     }
 
     //Checks if 1 tile away from winning. Not sure if I'll actually use this for anything yet

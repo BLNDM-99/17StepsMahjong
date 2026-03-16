@@ -93,20 +93,48 @@ public class Main {
 
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 1));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 1));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 2));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 2));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 3));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 3));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 4));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 4));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 5));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 5));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 6));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 6));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 7));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 7));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 9));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 9));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 6));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 6));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 7));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 7));
 
         HandValidator.isWinningHand(sevenPairHand.getTiles());
+
+        Hand thirteenOrphansHand = new Hand();
+
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 1));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 1));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 9));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 1));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 9));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.DOT, 1));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.DOT, 9));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.WIND, 1));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.WIND, 2));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.WIND, 3));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.WIND, 4));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 1));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 2));
+        thirteenOrphansHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 3));
+
+        thirteenOrphansHand.setWinningTileIndex(new Tile(Tile.Suit.CHARACTER, 1).getSortingValue()); //13-sided wait
+
+        HandValidator.isWinningHand(thirteenOrphansHand.getTiles());
+        checker = new YakuChecker(thirteenOrphansHand);
+        checker.isKokushiMusou();
+        checker.isKokushiJuusanmen();
+
+        thirteenOrphansHand.setWinningTileIndex(new Tile(Tile.Suit.DRAGON, 1).getSortingValue());
+        checker.isKokushiMusou();
+        checker.isKokushiJuusanmen();
 
         List<Tile> fullSet = TileFactory.createFullSet();
         fullSet.sort(SORT_BY_ORDER);
