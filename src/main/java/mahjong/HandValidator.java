@@ -23,6 +23,9 @@ public class HandValidator {
                 counts[i] += 2;
             }
         }
+        if (canFormSevenPairs(counts)){
+            return true;
+        }
 
         System.out.println("Not valid");
         return false;
@@ -82,8 +85,19 @@ public class HandValidator {
                 counts[i+2]++;
             }
         }
-
         return false;
+    }
+
+    protected static boolean canFormSevenPairs(int[] counts){
+        int i;
+        int pairCount = 0;
+
+        for (i = 0; i < 34; i++){
+            if (counts[i] == 2){
+                pairCount++;
+            }
+        }
+        return pairCount == 7;
     }
 
     //Checks if 1 tile away from winning. Not sure if I'll actually use this for anything yet

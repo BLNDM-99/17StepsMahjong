@@ -89,6 +89,25 @@ public class Main {
         checker = new YakuChecker(greenHand);
         System.out.println("All green: "+ checker.isRyuuiisou());
 
+        Hand sevenPairHand = new Hand();
+
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 1));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 1));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 2));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 2));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 3));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 3));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 4));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 4));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 5));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 5));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 6));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 6));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 7));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 7));
+
+        HandValidator.isWinningHand(sevenPairHand.getTiles());
+
         List<Tile> fullSet = TileFactory.createFullSet();
         fullSet.sort(SORT_BY_ORDER);
         System.out.println(fullSet);

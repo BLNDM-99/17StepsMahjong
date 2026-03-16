@@ -88,4 +88,9 @@ public class YakuChecker {
         }
         return true;
     }
+
+    public boolean isSevenPairs() {
+        HandValidator hv = new HandValidator();
+        return HandValidator.canFormSevenPairs(counts);
+    }
 }
