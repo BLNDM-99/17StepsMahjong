@@ -42,8 +42,8 @@ public class Main {
 
         Hand hand = new Hand();
 
-        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,9));
-        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,9)); // pair
+        hand.getTiles().add(new Tile(Tile.Suit.DRAGON,2));
+        hand.getTiles().add(new Tile(Tile.Suit.DRAGON,2)); // pair
 
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2));
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,3));
@@ -86,6 +86,7 @@ public class Main {
         greenHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 2));
         greenHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 2));
 
+        HandValidator.isWinningHand(greenHand.getTiles());
         checker = new YakuChecker(greenHand);
         System.out.println("All green: "+ checker.isRyuuiisou());
 

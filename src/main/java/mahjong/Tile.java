@@ -48,6 +48,36 @@ public class Tile {
         this.isUraDora = false;
     }
 
+    //third constructor for debugging purposes, not really meant to be used for game logic
+    public Tile(int sortingValue){
+        if (sortingValue <= 8){
+            this.suit = Suit.CHARACTER;
+        }
+        else if (sortingValue <= 17){
+            this.suit = Suit.BAMBOO;
+        }
+        else if (sortingValue <= 26){
+            this.suit = Suit.DOT;
+        }
+        else if (sortingValue <= 30){
+            this.suit = Suit.WIND;
+        }
+        else {
+            this.suit = Suit.DRAGON;
+        }
+
+        if (sortingValue <= 26) {
+            this.rank = (sortingValue % 9) + 1;
+        } else if (sortingValue <= 30) {
+            this.rank = sortingValue - 26;
+        } else {
+            this.rank = sortingValue - 30;
+        }
+
+        this.sortingValue = suit.getSortingValue() + rank;
+        this.isRed = false;
+    }
+
     //Getters
     public Suit getSuit() { return suit; }
     public int getRank() { return rank;}
