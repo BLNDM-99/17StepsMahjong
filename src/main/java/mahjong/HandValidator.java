@@ -13,10 +13,12 @@ public class HandValidator {
 
             if (counts[i] >= 2) {
 
+                int temp = i; //the value of the tile that produces the valid pair. 0 - 1 of character, 1 - 2 of character, etc.
                 counts[i] -= 2;
 
                 if (canFormSets(counts)) {
                     System.out.println("Valid hand!");
+                    System.out.println("Valid pair was: " + temp + temp);
                     return true;
                 }
 

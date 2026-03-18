@@ -42,8 +42,8 @@ public class Main {
 
         Hand hand = new Hand();
 
-        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2));
-        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2)); // pair
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,9));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,9)); // pair
 
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2));
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,3));
