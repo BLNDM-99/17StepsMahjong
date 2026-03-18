@@ -136,6 +136,26 @@ public class Main {
         checker.isKokushiMusou();
         checker.isKokushiJuusanmen();
 
+        Hand tripletHand = new Hand();
+
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 1));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 1));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 1));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 3));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 3));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 3));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 5));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 5));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 5));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 7));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 7));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 7));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 9));
+        tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 9));
+
+        checker = new YakuChecker(tripletHand);
+        System.out.println(checker.isToitoi());
+
         List<Tile> fullSet = TileFactory.createFullSet();
         fullSet.sort(SORT_BY_ORDER);
         System.out.println(fullSet);

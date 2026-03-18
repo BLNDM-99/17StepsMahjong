@@ -71,7 +71,7 @@ public class YakuChecker {
 
     /*
     public boolean isPinfu() {
-
+        return hand.getFu == 20;
     }
     */
 
@@ -79,6 +79,23 @@ public class YakuChecker {
     public boolean isChiitoitsu() {
         HandValidator hv = new HandValidator();
         return HandValidator.canFormSevenPairs(counts);
+    }
+
+    //English name: all triplets
+    public boolean isToitoi() {
+        for (int i = 0; i < 34; i++) {
+            if (counts[i] >= 2) {
+                counts[i] -= 2;
+
+                if (HandValidator.canFormOnlyTriplets(counts)) {
+                    counts[i] += 2;
+                    return true;
+                }
+
+                counts[i] += 2;
+            }
+        }
+        return false;
     }
 
     //----------------------------------------------------YAKUMAN-------------------------------------------------------
