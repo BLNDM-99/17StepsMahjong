@@ -42,24 +42,24 @@ public class Main {
 
         Hand hand = new Hand();
 
-        hand.getTiles().add(new Tile(Tile.Suit.DRAGON,2));
-        hand.getTiles().add(new Tile(Tile.Suit.DRAGON,2)); // pair
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,8));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,8)); // pair
 
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2));
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,3));
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,4));
 
-        hand.getTiles().add(new Tile(Tile.Suit.BAMBOO,5));
-        hand.getTiles().add(new Tile(Tile.Suit.BAMBOO,6));
-        hand.getTiles().add(new Tile(Tile.Suit.BAMBOO,7));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,3));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,4));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,5));
 
-        hand.getTiles().add(new Tile(Tile.Suit.DOT,3));
-        hand.getTiles().add(new Tile(Tile.Suit.DOT,3));
-        hand.getTiles().add(new Tile(Tile.Suit.DOT,3));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,4));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,5));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,6));
 
-        hand.getTiles().add(new Tile(Tile.Suit.DOT,6));
-        hand.getTiles().add(new Tile(Tile.Suit.DOT,7));
-        hand.getTiles().add(new Tile(Tile.Suit.DOT,8));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,5));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,6));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,7));
 
         //System.out.println(HandValidator.isWinningHand(hand));
         HandValidator.isWinningHand(hand.getTiles());
@@ -86,6 +86,7 @@ public class Main {
         greenHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 2));
         greenHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 2));
 
+        Collections.shuffle(greenHand.getTiles());
         HandValidator.isWinningHand(greenHand.getTiles());
         checker = new YakuChecker(greenHand);
         System.out.println("All green: "+ checker.isRyuuiisou());
@@ -94,18 +95,18 @@ public class Main {
 
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 1));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 1));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 2));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 2));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 3));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 3));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 4));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 4));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 5));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 5));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 6));
+        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 6));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 7));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 7));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 9));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 9));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 6));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 6));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 7));
-        sevenPairHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 7));
 
         HandValidator.isWinningHand(sevenPairHand.getTiles());
 

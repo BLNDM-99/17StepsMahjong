@@ -11,6 +11,14 @@ public class HandValidator {
 
         int[] counts = buildCounts(tiles);
 
+        if (canFormSevenPairs(counts)){
+            System.out.println("Valid seven pairs!");
+            return true;
+        }
+        if (canFormThirteenOrphans(counts)){
+            System.out.println("Valid thirteen orphans!");
+            return true;
+        }
         // try every possible pair
         for (int i = 0; i < 34; i++) {
 
@@ -29,14 +37,6 @@ public class HandValidator {
 
                 counts[i] += 2;
             }
-        }
-        if (canFormSevenPairs(counts)){
-            System.out.println("Valid seven pairs!");
-            return true;
-        }
-        if (canFormThirteenOrphans(counts)){
-            System.out.println("Valid thirteen orphans!");
-            return true;
         }
 
         System.out.println("Not valid");
