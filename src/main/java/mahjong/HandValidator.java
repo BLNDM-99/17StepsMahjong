@@ -4,6 +4,9 @@ import java.util.*;
 
 public class HandValidator {
 
+    static int tripletsCount = 0;
+    static int sequencesCount = 0;
+
     public static boolean isWinningHand(List<Tile> tiles) {
 
         int[] counts = buildCounts(tiles);
@@ -19,6 +22,8 @@ public class HandValidator {
                 if (canFormSets(counts)) {
                     System.out.println("Valid hand!");
                     System.out.println("Valid pair was: " + temp + ", " + temp);
+                    tripletsCount = 0;
+                    sequencesCount = 0;
                     return true;
                 }
 
@@ -68,6 +73,8 @@ public class HandValidator {
             counts[i] -= 3;
 
             if (canFormSets(counts)) {
+                tripletsCount++;
+                System.out.println("Triplets: " + tripletsCount);
                 return true;
             }
 
@@ -84,6 +91,8 @@ public class HandValidator {
                 counts[i+2]--;
 
                 if (canFormSets(counts)) {
+                    sequencesCount++;
+                    System.out.println("Sequences " + sequencesCount);
                     return true;
                 }
 
