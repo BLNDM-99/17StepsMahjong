@@ -9,13 +9,13 @@ public class HandValidator {
 
     public static boolean isWinningHand(Hand hand) {
 
-        int[] counts = buildCounts(hand.getTiles());
+        int[] counts = buildCounts(hand);
 
-        if (canFormSevenPairs(counts)){
+        if (canFormSevenPairs(hand)){
             System.out.println("Valid seven pairs!");
             return true;
         }
-        if (canFormThirteenOrphans(counts)){
+        if (canFormThirteenOrphans(hand)){
             System.out.println("Valid thirteen orphans!");
             return true;
         }
@@ -27,11 +27,11 @@ public class HandValidator {
                 Tile temp = new Tile(i); //the value of the tile that produces the valid pair. 0 - 1 of character, 1 - 2 of character, etc.
                 counts[i] -= 2;
 
-                if (canFormSets(counts)) {
+                if (canFormSets(hand, counts)) {
                     System.out.println("Valid hand!");
                     System.out.println("Valid pair was: " + temp + ", " + temp);
-                    tripletsCount = 0;
-                    sequencesCount = 0;
+                    //tripletsCount = 0;
+                    //sequencesCount = 0;
                     return true;
                 }
 
@@ -43,18 +43,18 @@ public class HandValidator {
         return false;
     }
 
-    private static int[] buildCounts(List<Tile> tiles) {
+    private static int[] buildCounts(Hand hand) {
 
         int[] counts = new int[34];
 
-        for (Tile t : tiles) {
+        for (Tile t : hand.getTiles()) {
             counts[t.getSortingValue()]++;
         }
 
         return counts;
     }
 
-    private static boolean canFormSets(int[] counts) {
+    private static boolean canFormSets(Hand hand, int[] counts) {
 
         int i;
 
@@ -72,9 +72,9 @@ public class HandValidator {
 
             counts[i] -= 3;
 
-            if (canFormSets(counts)) {
-                tripletsCount++;
-                System.out.println("Triplets: " + tripletsCount);
+            if (canFormSets(hand, counts)) {
+                hand.setTriplets(hand.getTriplets() + 1);
+                System.out.println("Triplets: " + hand.getTriplets());
                 return true;
             }
 
@@ -90,9 +90,9 @@ public class HandValidator {
                 counts[i+1]--;
                 counts[i+2]--;
 
-                if (canFormSets(counts)) {
-                    sequencesCount++;
-                    System.out.println("Sequences " + sequencesCount);
+                if (canFormSets(hand, counts)) {
+                    hand.setSequences(hand.getSequences() + 1);
+                    System.out.println("Sequences " + hand.getSequences());
                     return true;
                 }
 
@@ -168,9 +168,10 @@ public class HandValidator {
         return false;
     }
 
-    protected static boolean canFormSevenPairs(int[] counts){
+    protected static boolean canFormSevenPairs(Hand hand){
         int i;
         int pairCount = 0;
+        int[] counts = buildCounts(hand);
 
         for (i = 0; i < 34; i++){
             if (counts[i] == 2){
@@ -180,9 +181,10 @@ public class HandValidator {
         return pairCount == 7;
     }
 
-    protected static boolean canFormThirteenOrphans(int[] counts){
+    protected static boolean canFormThirteenOrphans(Hand hand){
         int[] legalIndexes = {0, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33};
         boolean foundPair = false;
+        int[] counts = buildCounts(hand);
 
         for (int li : legalIndexes){
             if (counts[li] < 1 || counts[li] >= 3){ //false if the tile isn't there or if it's a triplet or quad
@@ -200,12 +202,12 @@ public class HandValidator {
     }
 
     //Checks if 1 tile away from winning. Not sure if I'll actually use this for anything yet
-    public static boolean isTenpai(List<Tile> tiles){
-        int[] counts = buildCounts(tiles);
+    public static boolean isTenpai(Hand hand){
+        int[] counts = buildCounts(hand);
 
         for (int i = 0; i < 34; i++){
             counts[i]++;
-            if (HandValidator.canFormSets(counts)){
+            if (HandValidator.canFormSets(hand, counts)){
                 counts[i]--;
                 return true;
             }

@@ -42,24 +42,24 @@ public class Main {
 
         Hand hand = new Hand();
 
-        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,8));
-        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,8)); // pair
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,9));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,9)); // pair
 
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2));
-        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,3));
-        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,4));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,2));
 
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,3));
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,4));
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,5));
 
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,3));
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,4));
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,5));
-        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,6));
 
-        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,5));
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,6));
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,7));
+        hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,8));
 
         //System.out.println(HandValidator.isWinningHand(hand));
         HandValidator.isWinningHand(hand);
@@ -67,7 +67,7 @@ public class Main {
         System.out.println(checker.isTanyao());
 
         hand.getTiles().remove(13);
-        HandValidator.isTenpai(hand.getTiles());
+        HandValidator.isTenpai(hand);
 
         Hand greenHand = new Hand();
 

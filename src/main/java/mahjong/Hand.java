@@ -18,7 +18,7 @@ public class Hand {
     public Hand() {
         this.tiles = new ArrayList<>();
         this.han = 0;
-        this.fu = 0;
+        this.fu = 20;
         this.triplets = 0;
         this.sequences = 0;
     }
