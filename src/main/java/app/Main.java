@@ -62,7 +62,7 @@ public class Main {
         hand.getTiles().add(new Tile(Tile.Suit.CHARACTER,7));
 
         //System.out.println(HandValidator.isWinningHand(hand));
-        HandValidator.isWinningHand(hand.getTiles());
+        HandValidator.isWinningHand(hand);
         YakuChecker checker = new YakuChecker(hand);
         System.out.println(checker.isTanyao());
 
@@ -87,7 +87,7 @@ public class Main {
         greenHand.getTiles().add(new Tile(Tile.Suit.DRAGON, 2));
 
         Collections.shuffle(greenHand.getTiles());
-        HandValidator.isWinningHand(greenHand.getTiles());
+        HandValidator.isWinningHand(greenHand);
         checker = new YakuChecker(greenHand);
         System.out.println("All green: "+ checker.isRyuuiisou());
 
@@ -108,7 +108,7 @@ public class Main {
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 7));
         sevenPairHand.getTiles().add(new Tile(Tile.Suit.BAMBOO, 7));
 
-        HandValidator.isWinningHand(sevenPairHand.getTiles());
+        HandValidator.isWinningHand(sevenPairHand);
 
         Hand thirteenOrphansHand = new Hand();
 
@@ -129,7 +129,7 @@ public class Main {
 
         thirteenOrphansHand.setWinningTileIndex(new Tile(Tile.Suit.CHARACTER, 1).getSortingValue()); //13-sided wait
 
-        HandValidator.isWinningHand(thirteenOrphansHand.getTiles());
+        HandValidator.isWinningHand(thirteenOrphansHand);
         checker = new YakuChecker(thirteenOrphansHand);
         checker.isKokushiMusou();
         checker.isKokushiJuusanmen();

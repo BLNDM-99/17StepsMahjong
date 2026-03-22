@@ -12,11 +12,15 @@ public class Hand {
     private int han;
     private int fu;
     public static final int MAX_HAND_SIZE = 13;
+    private int triplets; //number of triplets
+    private int sequences; //number of sequences
 
     public Hand() {
         this.tiles = new ArrayList<>();
         this.han = 0;
         this.fu = 0;
+        this.triplets = 0;
+        this.sequences = 0;
     }
 
     public List<Tile> getTiles() {
@@ -37,6 +41,22 @@ public class Hand {
         if (!isFull()) {
             tiles.add(t);
         }
+    }
+
+    public int getTriplets() {
+        return triplets;
+    }
+
+    public void setTriplets(int triplets) {
+        this.triplets = triplets;
+    }
+
+    public int getSequences() {
+        return sequences;
+    }
+
+    public void setSequences(int sequences) {
+        this.sequences = sequences;
     }
 
     public void discardTile(Tile t) {

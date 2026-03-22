@@ -4,12 +4,12 @@ import java.util.*;
 
 public class HandValidator {
 
-    static int tripletsCount = 0;
-    static int sequencesCount = 0;
+    public static int tripletsCount = 0;
+    public static int sequencesCount = 0;
 
-    public static boolean isWinningHand(List<Tile> tiles) {
+    public static boolean isWinningHand(Hand hand) {
 
-        int[] counts = buildCounts(tiles);
+        int[] counts = buildCounts(hand.getTiles());
 
         if (canFormSevenPairs(counts)){
             System.out.println("Valid seven pairs!");
