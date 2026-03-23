@@ -175,7 +175,17 @@ public class YakuChecker {
         return true;
     }
 
+    //English name: small four winds
+    public boolean isShousuushii() {
+        int[] tempCounts = counts.clone();
 
+        for (int i = 27; i <= 30; i++){
+            if (tempCounts[i] == 4){
+                tempCounts[i] = 3;
+            }
+        }
+        return tempCounts[27] + tempCounts[28] + tempCounts[29] + tempCounts[30] == 11;
+    }
 
     //----------------------------------------------------DOUBLE YAKUMAN-------------------------------------------------------
 
@@ -196,5 +206,17 @@ public class YakuChecker {
         }
         System.out.println("Is 13-sided thirteen orphans");
         return true;
+    }
+
+    //English name: big four winds
+    public boolean isDaisuushii() {
+        int[] tempCounts = counts.clone();
+
+        for (int i = 27; i <= 30; i++){
+            if (tempCounts[i] == 4){
+                tempCounts[i] = 3;
+            }
+        }
+        return tempCounts[27] + tempCounts[28] + tempCounts[29] + tempCounts[30] == 12;
     }
 }
