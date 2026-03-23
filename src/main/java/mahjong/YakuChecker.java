@@ -139,8 +139,8 @@ public class YakuChecker {
     //English name: all green
     public boolean isRyuuiisou() {
         Set<Integer> legalIndexes = new HashSet<>();
-        legalIndexes.add(10); legalIndexes.add(11); legalIndexes.add(12);
-        legalIndexes.add(14); legalIndexes.add(16); legalIndexes.add(32);
+        legalIndexes.add(19); legalIndexes.add(20); legalIndexes.add(21);
+        legalIndexes.add(23); legalIndexes.add(25); legalIndexes.add(32);
 
         for (int i = 0; i < counts.length; i++) {
             if (counts[i] > 0 && !legalIndexes.contains(i)) return false;

@@ -6,8 +6,8 @@ public class Tile {
 
     public enum Suit{
         CHARACTER(0),
-        BAMBOO(9),
-        DOT(18),
+        DOT(9),
+        BAMBOO(18),
         WIND(27),
         DRAGON(31);
 
@@ -54,10 +54,10 @@ public class Tile {
             this.suit = Suit.CHARACTER;
         }
         else if (sortingValue <= 17){
-            this.suit = Suit.BAMBOO;
+            this.suit = Suit.DOT;
         }
         else if (sortingValue <= 26){
-            this.suit = Suit.DOT;
+            this.suit = Suit.BAMBOO;
         }
         else if (sortingValue <= 30){
             this.suit = Suit.WIND;
