@@ -139,7 +139,7 @@ public class MainFX extends Application {
         System.out.println(hand);
 
         if (hand.getTiles().size() == 13) {
-            System.out.println(HandValidator.isTenpaiAI(hand));
+            System.out.println(HandValidator.isTenpai(hand));
         }
     }
 

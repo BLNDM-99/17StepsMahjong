@@ -9,6 +9,8 @@ public class HandValidator {
 
     public static boolean isWinningHand(Hand hand) {
 
+        if (hand.getTiles().size() != 14) return false;
+
         int[] counts = buildCounts(hand);
 
         if (canFormSevenPairs(counts)){
@@ -193,24 +195,7 @@ public class HandValidator {
         return true; //if we made it this far then this is thirteen orphans
     }
 
-    //Checks if 1 tile away from winning. Not sure if I'll actually use this for anything yet
     public static boolean isTenpai(Hand hand){
-        //if (hand.getTiles().size() != 13) return false;
-        int[] counts = buildCounts(hand);
-
-        for (int i = 0; i < 34; i++){
-            counts[i]++;
-            if (HandValidator.canFormSets(counts)
-                || HandValidator.canFormSevenPairs(counts)){
-                counts[i]--;
-                return true;
-            }
-            counts[i]--;
-        }
-        return false;
-    }
-
-    public static boolean isTenpaiAI(Hand hand){
         if (hand.getTiles().size() != 13) return false;
 
         int[] counts = buildCounts(hand);
@@ -227,7 +212,6 @@ public class HandValidator {
             }
             temp[i]--;
             hand.getTiles().remove(hand.getTiles().size()-1);
-            System.out.println(temp[i]);
         }
         return false;
     }
