@@ -160,6 +160,27 @@ public class Main {
         System.out.println("Full Flush: " + checker.isChinitsu());
         System.out.println("Half Flush: " + checker.isHonitsu());
 
+        Hand bigThreeDragons = new Hand();
+
+        bigThreeDragons.getTiles().add(new Tile(31));
+        bigThreeDragons.getTiles().add(new Tile(31));
+        bigThreeDragons.getTiles().add(new Tile(31));
+        bigThreeDragons.getTiles().add(new Tile(32));
+        bigThreeDragons.getTiles().add(new Tile(32));
+        bigThreeDragons.getTiles().add(new Tile(32));
+        bigThreeDragons.getTiles().add(new Tile(33));
+        bigThreeDragons.getTiles().add(new Tile(33));
+        bigThreeDragons.getTiles().add(new Tile(33));
+        bigThreeDragons.getTiles().add(new Tile(0));
+        bigThreeDragons.getTiles().add(new Tile(0));
+        bigThreeDragons.getTiles().add(new Tile(0));
+        bigThreeDragons.getTiles().add(new Tile(1));
+        bigThreeDragons.getTiles().add(new Tile(1));
+
+        System.out.println(bigThreeDragons.getTiles().get(7));
+        checker = new YakuChecker(bigThreeDragons);
+        System.out.println("Big three dragons: " + checker.isDaisangen());
+
         List<Tile> fullSet = TileFactory.createFullSet();
         fullSet.sort(SORT_BY_ORDER);
         System.out.println(fullSet);

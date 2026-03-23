@@ -165,6 +165,20 @@ public class YakuChecker {
         return false;
     }
 
+    //English name: big three dragons
+    public boolean isDaisangen() {
+        for (int i = 31; i <= 33; i++){
+            if (counts[i] < 3){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+    //----------------------------------------------------DOUBLE YAKUMAN-------------------------------------------------------
+
     //English name: thirteen orphans 13-sided wait
     public boolean isKokushiJuusanmen() {
         //tbh this whole function might be necessary because if something is thirteen orphans but not kokushi musou
