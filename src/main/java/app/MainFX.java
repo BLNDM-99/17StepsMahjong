@@ -2,20 +2,19 @@ package app;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import mahjong.Hand;
 import mahjong.Tile;
 import mahjong.TileFactory;
 import mahjong.Wall;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,65 +24,120 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
         // Create the wall tiles
         List<Tile> fullSet = TileFactory.createFullSet();
         fullSet.sort(SORT_BY_ORDER);
         Collections.shuffle(fullSet);
 
-        Wall wall = new Wall(fullSet.subList(0, 34));
+        Wall wall = new Wall(new ArrayList<>(fullSet.subList(0, 34)));
+        Hand playerHand = new Hand();
 
-        // VBox to hold two rows
-        VBox root = new VBox(5); // 5px spacing between rows
+        // Layout containers
+        VBox root = new VBox(10);
 
-        // Split into two rows
         HBox row1 = new HBox(5);
         HBox row2 = new HBox(5);
+        HBox handRow = new HBox(5);
 
         for (int i = 0; i < wall.getTiles().size(); i++) {
             Tile tile = wall.getTiles().get(i);
 
-            // Create rectangle for the tile
-            Rectangle front = new Rectangle(40, 40.0*(4.0/3)); // width 40, height 60
-            Rectangle rect = new Rectangle(40, 40.0*(4.0/3)); // width 40, height 60
-            // load from resources folder on classpath
+            // Determine filename (red vs normal)
+            String filename = tile.isRed()
+                    ? tile.getSortingValue() + "red.png"
+                    : tile.getSortingValue() + ".png";
 
-            String filename = tile.isRed() ? tile.getSortingValue() + "red.png" : tile.getSortingValue() + ".png";
-            Image tileImage = new Image(getClass().getResource("/tiles/" + filename).toExternalForm());
-            ImageView iv = new ImageView(tileImage);
-            iv.setFitWidth(100);     // width you want
-            iv.setFitHeight(150);    // height you want
-            iv.setPreserveRatio(true);
-            iv.setSmooth(true);      // smooth scaling
-            root.getChildren().add(iv);
-            Image tileImageFront = new Image(getClass().getResource("/tiles/Front.png").toExternalForm());
-            ImageView iv1 = new ImageView(tileImageFront);
-            iv1.setFitWidth(100);     // width you want
-            iv1.setFitHeight(150);    // height you want
-            iv1.setPreserveRatio(true);
-            iv1.setSmooth(true);      // smooth scaling
-            root.getChildren().add(iv1);
+            // Load tile image
+            Image tileImage = new Image(
+                    getClass().getResource("/tiles/" + filename).toExternalForm()
+            );
 
-            // Label with tile info
-            Label label = new Label(""+ tile.getSortingValue()); // make sure Tile.toString() shows suit+rank
-            label.setStyle("-fx-font-size: 12; -fx-font-weight: bold;");
+            ImageView tileView = new ImageView(tileImage);
+            tileView.setFitWidth(60);
+            tileView.setFitHeight(90);
+            tileView.setPreserveRatio(true);
+            tileView.setSmooth(true);
 
-            // StackPane to overlay label on rectangle
-            StackPane stack = new StackPane(iv1, iv);
+            // Optional front overlay
+            Image frontImage = new Image(
+                    getClass().getResource("/tiles/Front.png").toExternalForm()
+            );
 
-            // Add to appropriate row
+            ImageView frontView = new ImageView(frontImage);
+            frontView.setFitWidth(60);
+            frontView.setFitHeight(90);
+            frontView.setPreserveRatio(true);
+            frontView.setSmooth(true);
+
+            // Stack tile + overlay
+            StackPane tileStack = new StackPane(frontView, tileView);
+
+            // CLICK HANDLER → move tile to hand
+            tileStack.setOnMouseClicked(e -> {
+                if (handRow.getChildren().size() < 13) {
+
+                    // safely remove from current parent
+                    if (tileStack.getParent() instanceof Pane) {
+                        Pane parent = (Pane) tileStack.getParent();
+                        parent.getChildren().remove(tileStack);
+                    }
+
+                    wall.getTiles().remove(tile);
+                    playerHand.getTiles().add(tile);
+                    playerHand.sortHand();
+                    // add to hand
+                    rebuildHandUI(handRow, playerHand.getTiles());
+                }
+            });
+
+            // Add to wall rows
             if (i < 17) {
-                row1.getChildren().add(stack);
+                row1.getChildren().add(tileStack);
             } else {
-                row2.getChildren().add(stack);
+                row2.getChildren().add(tileStack);
             }
         }
 
-        root.getChildren().addAll(row1, row2);
+        root.getChildren().addAll(row1, row2, handRow);
 
-        Scene scene = new Scene(root, 800, 200);
+        Scene scene = new Scene(root, 1100, 300);
         primaryStage.setTitle("Mahjong Wall");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void rebuildHandUI(HBox handRow, List<Tile> handTiles) {
+
+        handRow.getChildren().clear();
+
+        for (Tile t : handTiles) {
+
+            String filename = t.isRed()
+                    ? t.getSortingValue() + "red.png"
+                    : t.getSortingValue() + ".png";
+
+            Image img = new Image(getClass().getResource("/tiles/" + filename).toExternalForm());
+            Image frontImage = new Image(
+                    getClass().getResource("/tiles/Front.png").toExternalForm()
+            );
+
+            ImageView iv = new ImageView(img);
+            iv.setFitWidth(60);
+            iv.setFitHeight(90);
+            iv.setPreserveRatio(true);
+            iv.setSmooth(true);
+
+            ImageView frontView = new ImageView(frontImage);
+            frontView.setFitWidth(60);
+            frontView.setFitHeight(90);
+            frontView.setPreserveRatio(true);
+            frontView.setSmooth(true);
+
+            StackPane tileStack = new StackPane(frontView, iv);
+
+            handRow.getChildren().addAll(tileStack);
+        }
     }
 
     public static void main(String[] args) {
