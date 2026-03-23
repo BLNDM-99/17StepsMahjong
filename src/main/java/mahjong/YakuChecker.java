@@ -98,6 +98,42 @@ public class YakuChecker {
         return false;
     }
 
+    //English name: full flush
+    public boolean isChinitsu(){
+        //this function assumes the hand is sorted
+        Tile firstTile = hand.getTiles().get(0);
+
+        if (firstTile.getSuit() == Tile.Suit.WIND || firstTile.getSuit() == Tile.Suit.DRAGON){
+            return false;
+        }
+
+        for (Tile t : hand.getTiles()){
+            if (t.getSuit() != firstTile.getSuit()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isHonitsu(){
+        //this function assumes the hand is sorted
+        Tile firstTile = hand.getTiles().get(0);
+
+        if (firstTile.getSuit() == Tile.Suit.WIND || firstTile.getSuit() == Tile.Suit.DRAGON){
+            return false;
+        }
+
+        for (Tile t : hand.getTiles()){
+            if (t.getSuit() == Tile.Suit.WIND || t.getSuit() == Tile.Suit.DRAGON){
+                return true;
+            }
+            else if (t.getSuit() != firstTile.getSuit()){
+                return false;
+            }
+        }
+        return false;
+    }
+
     //----------------------------------------------------YAKUMAN-------------------------------------------------------
 
     //English name: all green

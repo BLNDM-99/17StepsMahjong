@@ -156,7 +156,9 @@ public class Main {
         tripletHand.getTiles().add(new Tile(Tile.Suit.CHARACTER, 9));
 
         checker = new YakuChecker(tripletHand);
-        System.out.println(checker.isToitoi());
+        System.out.println("Is all triplets: " + checker.isToitoi());
+        System.out.println("Full Flush: " + checker.isChinitsu());
+        System.out.println("Half Flush: " + checker.isHonitsu());
 
         List<Tile> fullSet = TileFactory.createFullSet();
         fullSet.sort(SORT_BY_ORDER);
@@ -188,6 +190,7 @@ public class Main {
         System.out.println(p1.getHand());
 
         YakuChecker checkerForPlayer = new YakuChecker(p1);
+        System.out.println(HandValidator.isWinningHand(p1.getHand()));
         System.out.println(checkerForPlayer.isTanyao());
         System.out.println(checkerForPlayer.isYakuhai());
     }
