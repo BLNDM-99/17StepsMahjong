@@ -30,8 +30,6 @@ public class HandValidator {
                 if (canFormSets(counts)) {
                     System.out.println("Valid hand!");
                     System.out.println("Valid pair was: " + temp + ", " + temp);
-                    //tripletsCount = 0;
-                    //sequencesCount = 0;
                     return true;
                 }
 
@@ -222,13 +220,13 @@ public class HandValidator {
 
             int[] temp = counts.clone();
             temp[i]++;
+            hand.getTiles().add(new Tile(i));
 
-            if (canFormSets(temp)
-                    || canFormSevenPairs(temp)
-                    || canFormThirteenOrphans(temp)) {
+            if (isWinningHand(hand)) {
                 return true;
             }
             temp[i]--;
+            hand.getTiles().remove(hand.getTiles().size()-1);
             System.out.println(temp[i]);
         }
         return false;

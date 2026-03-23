@@ -137,9 +137,9 @@ public class MainFX extends Application {
             handRow.getChildren().addAll(tileStack);
         }
         System.out.println(hand);
-        //this works but checking for tenpai doesn't work...
-        if (hand.getTiles().size() == 14) {
-            System.out.println(HandValidator.isWinningHand(hand));
+
+        if (hand.getTiles().size() == 13) {
+            System.out.println(HandValidator.isTenpaiAI(hand));
         }
     }
 
