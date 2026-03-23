@@ -11,11 +11,11 @@ public class HandValidator {
 
         int[] counts = buildCounts(hand);
 
-        if (canFormSevenPairs(hand)){
+        if (canFormSevenPairs(counts)){
             System.out.println("Valid seven pairs!");
             return true;
         }
-        if (canFormThirteenOrphans(hand)){
+        if (canFormThirteenOrphans(counts)){
             System.out.println("Valid thirteen orphans!");
             return true;
         }
@@ -27,7 +27,7 @@ public class HandValidator {
                 Tile temp = new Tile(i); //the value of the tile that produces the valid pair. 0 - 1 of character, 1 - 2 of character, etc.
                 counts[i] -= 2;
 
-                if (canFormSets(hand, counts)) {
+                if (canFormSets(counts)) {
                     System.out.println("Valid hand!");
                     System.out.println("Valid pair was: " + temp + ", " + temp);
                     //tripletsCount = 0;
@@ -43,7 +43,7 @@ public class HandValidator {
         return false;
     }
 
-    private static int[] buildCounts(Hand hand) {
+    protected static int[] buildCounts(Hand hand) {
 
         int[] counts = new int[34];
 
@@ -54,7 +54,7 @@ public class HandValidator {
         return counts;
     }
 
-    private static boolean canFormSets(Hand hand, int[] counts) {
+    private static boolean canFormSets(int[] counts) {
 
         int i;
 
@@ -72,9 +72,7 @@ public class HandValidator {
 
             counts[i] -= 3;
 
-            if (canFormSets(hand, counts)) {
-                hand.setTriplets(hand.getTriplets() + 1);
-                System.out.println("Triplets: " + hand.getTriplets());
+            if (canFormSets(counts)) {
                 return true;
             }
 
@@ -90,9 +88,7 @@ public class HandValidator {
                 counts[i+1]--;
                 counts[i+2]--;
 
-                if (canFormSets(hand, counts)) {
-                    hand.setSequences(hand.getSequences() + 1);
-                    System.out.println("Sequences " + hand.getSequences());
+                if (canFormSets(counts)) {
                     return true;
                 }
 
@@ -168,10 +164,9 @@ public class HandValidator {
         return false;
     }
 
-    protected static boolean canFormSevenPairs(Hand hand){
+    protected static boolean canFormSevenPairs(int[] counts){
         int i;
         int pairCount = 0;
-        int[] counts = buildCounts(hand);
 
         for (i = 0; i < 34; i++){
             if (counts[i] == 2){
@@ -181,10 +176,9 @@ public class HandValidator {
         return pairCount == 7;
     }
 
-    protected static boolean canFormThirteenOrphans(Hand hand){
+    protected static boolean canFormThirteenOrphans(int[] counts){
         int[] legalIndexes = {0, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33};
         boolean foundPair = false;
-        int[] counts = buildCounts(hand);
 
         for (int li : legalIndexes){
             if (counts[li] < 1 || counts[li] >= 3){ //false if the tile isn't there or if it's a triplet or quad
@@ -203,15 +197,39 @@ public class HandValidator {
 
     //Checks if 1 tile away from winning. Not sure if I'll actually use this for anything yet
     public static boolean isTenpai(Hand hand){
+        //if (hand.getTiles().size() != 13) return false;
         int[] counts = buildCounts(hand);
 
         for (int i = 0; i < 34; i++){
             counts[i]++;
-            if (HandValidator.canFormSets(hand, counts)){
+            if (HandValidator.canFormSets(counts)
+                || HandValidator.canFormSevenPairs(counts)){
                 counts[i]--;
                 return true;
             }
             counts[i]--;
+        }
+        return false;
+    }
+
+    public static boolean isTenpaiAI(Hand hand){
+        if (hand.getTiles().size() != 13) return false;
+
+        int[] counts = buildCounts(hand);
+
+        for (int i = 0; i < 34; i++){
+            if (counts[i] == 4) continue; // can't draw a 5th tile
+
+            int[] temp = counts.clone();
+            temp[i]++;
+
+            if (canFormSets(temp)
+                    || canFormSevenPairs(temp)
+                    || canFormThirteenOrphans(temp)) {
+                return true;
+            }
+            temp[i]--;
+            System.out.println(temp[i]);
         }
         return false;
     }

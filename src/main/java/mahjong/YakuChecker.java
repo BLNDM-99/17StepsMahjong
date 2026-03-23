@@ -78,7 +78,7 @@ public class YakuChecker {
     //English name: seven pairs
     public boolean isChiitoitsu() {
         HandValidator hv = new HandValidator();
-        return HandValidator.canFormSevenPairs(hand);
+        return HandValidator.canFormSevenPairs(HandValidator.buildCounts(hand));
     }
 
     //English name: all triplets

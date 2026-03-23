@@ -2,6 +2,7 @@ package app;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -9,10 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import mahjong.Hand;
-import mahjong.Tile;
-import mahjong.TileFactory;
-import mahjong.Wall;
+import mahjong.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -75,7 +73,7 @@ public class MainFX extends Application {
 
             // CLICK HANDLER → move tile to hand
             tileStack.setOnMouseClicked(e -> {
-                if (handRow.getChildren().size() < 13) {
+                if (handRow.getChildren().size() < 14) {
 
                     // safely remove from current parent
                     if (tileStack.getParent() instanceof Pane) {
@@ -87,7 +85,7 @@ public class MainFX extends Application {
                     playerHand.getTiles().add(tile);
                     playerHand.sortHand();
                     // add to hand
-                    rebuildHandUI(handRow, playerHand.getTiles());
+                    rebuildHandUI(handRow, playerHand);
                 }
             });
 
@@ -107,11 +105,11 @@ public class MainFX extends Application {
         primaryStage.show();
     }
 
-    private void rebuildHandUI(HBox handRow, List<Tile> handTiles) {
+    private void rebuildHandUI(HBox handRow, Hand hand) {
 
         handRow.getChildren().clear();
 
-        for (Tile t : handTiles) {
+        for (Tile t : hand.getTiles()) {
 
             String filename = t.isRed()
                     ? t.getSortingValue() + "red.png"
@@ -137,6 +135,11 @@ public class MainFX extends Application {
             StackPane tileStack = new StackPane(frontView, iv);
 
             handRow.getChildren().addAll(tileStack);
+        }
+        System.out.println(hand);
+        //this works but checking for tenpai doesn't work...
+        if (hand.getTiles().size() == 14) {
+            System.out.println(HandValidator.isWinningHand(hand));
         }
     }
 
