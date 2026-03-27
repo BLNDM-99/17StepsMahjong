@@ -1,5 +1,6 @@
 package mahjong;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -93,6 +94,7 @@ public class YakuChecker {
                 }
 
                 counts[i] += 2;
+                System.out.println(Arrays.toString(counts));
             }
         }
         return false;

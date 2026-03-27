@@ -52,8 +52,8 @@ public class MainFX extends Application {
             );
 
             ImageView tileView = new ImageView(tileImage);
-            tileView.setFitWidth(60);
-            tileView.setFitHeight(90);
+            tileView.setFitWidth(60.0);
+            tileView.setFitHeight(60.0*(4.0/3));
             tileView.setPreserveRatio(true);
             tileView.setSmooth(true);
 
@@ -64,7 +64,7 @@ public class MainFX extends Application {
 
             ImageView frontView = new ImageView(frontImage);
             frontView.setFitWidth(60);
-            frontView.setFitHeight(90);
+            frontView.setFitHeight(60*(4.0/3));
             frontView.setPreserveRatio(true);
             frontView.setSmooth(true);
 
@@ -73,7 +73,7 @@ public class MainFX extends Application {
 
             // CLICK HANDLER → move tile to hand
             tileStack.setOnMouseClicked(e -> {
-                if (handRow.getChildren().size() < 14) {
+                if (handRow.getChildren().size() < 13) {
 
                     // safely remove from current parent
                     if (tileStack.getParent() instanceof Pane) {
@@ -122,13 +122,13 @@ public class MainFX extends Application {
 
             ImageView iv = new ImageView(img);
             iv.setFitWidth(60);
-            iv.setFitHeight(90);
+            iv.setFitHeight(60*(4.0/3));
             iv.setPreserveRatio(true);
             iv.setSmooth(true);
 
             ImageView frontView = new ImageView(frontImage);
             frontView.setFitWidth(60);
-            frontView.setFitHeight(90);
+            frontView.setFitHeight(60*(4.0/3));
             frontView.setPreserveRatio(true);
             frontView.setSmooth(true);
 
