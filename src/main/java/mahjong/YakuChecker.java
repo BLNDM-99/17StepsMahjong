@@ -189,6 +189,31 @@ public class YakuChecker {
         return tempCounts[27] + tempCounts[28] + tempCounts[29] + tempCounts[30] == 11;
     }
 
+    //English name: 9 gates
+    public boolean isChuurenPoutou() {
+        int[] tempCounts = counts.clone();
+
+        for (int i = winningTile.getSortingValue(); i < winningTile.getSortingValue() + 9; i++){
+            int pairFound = 0;
+
+            if (counts[winningTile.getSortingValue()] < 3 || counts[winningTile.getSortingValue() + 9] < 3){
+                return false;
+            }
+            else if (counts[i] == 2){
+                pairFound++;
+            }
+
+            if (counts[winningTile.getSortingValue()] == 4 || counts[winningTile.getSortingValue() + 9] == 4){
+                pairFound++;
+            }
+            else if (counts[i] == 2){
+                pairFound++;
+            }
+
+        }
+        return false;
+    }
+
     //----------------------------------------------------DOUBLE YAKUMAN-------------------------------------------------------
 
     //English name: thirteen orphans 13-sided wait
